@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathwork - Transforma tu vida con la respiración</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(99, 179, 237, 0.9), rgba(155, 89, 182, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="grad1"><stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.3" /><stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:0" /></radialGradient></defs><circle cx="600" cy="300" r="200" fill="url(%23grad1)"><animate attributeName="r" values="150;250;150" dur="4s" repeatCount="indefinite"/></circle></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.2) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 20px;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .breathing-circle {
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 60px;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #5f7c8a;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Techniques Section */
+        .techniques {
+            background: white;
+        }
+
+        .technique-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .technique-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .technique-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .technique-btn.active {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .technique-card {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .technique-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .technique-icon {
+            font-size: 3.5rem;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .technique-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .technique-card h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .technique-subtitle {
+            color: #7f8c8d;
+            font-style: italic;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+
+        .technique-description {
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0 25px 0;
+            font-size: 1.1rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .contact-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: #667eea;
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .contact-btn.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 20px;
+            }
+
+            .technique-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .technique-card {
+                padding: 30px 20px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="breathing-circle"></div>
+            <h1>Si quieres cambiar tu destino,<br>cambia tu respiración</h1>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>¿Qué vas a sentir?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="bi bi-heart-pulse"></i></div>
+                    <h3>En tu cuerpo</h3>
+                    <p>Ligereza, apertura y descanso profundo que transforma tu bienestar físico.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="bi bi-lightbulb"></i></div>
+                    <h3>En tu mente</h3>
+                    <p>Claridad, enfoque y calma que te permiten pensar con mayor precisión.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="bi bi-lightning-charge"></i></div>
+                    <h3>En tu energía</h3>
+                    <p>Conexión interna y estabilidad emocional que te mantienen centrado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section class="techniques">
+        <div class="container">
+            <h2>Técnicas de Respiración</h2>
+            
+            <div class="technique-nav">
+                <button class="technique-btn" onclick="scrollToTechnique('tech1')">4-7-8 Para Dormir</button>
+                <button class="technique-btn" onclick="scrollToTechnique('tech2')">5-5 Regulación</button>
+                <button class="technique-btn" onclick="scrollToTechnique('tech3')">4-6 Anti-Nervios</button>
+                <button class="technique-btn" onclick="scrollToTechnique('tech4')">30-15 Energía</button>
+                <button class="technique-btn" onclick="scrollToTechnique('tech5')">10-20-30 Fuerza</button>
+            </div>
+
+            <div id="tech1" class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon"><i class="bi bi-moon-stars"></i></div>
+                    <div>
+                        <h3>Técnica 4-7-8</h3>
+                        <p class="technique-subtitle">Para dormir profundamente y relajar el cuerpo</p>
+                    </div>
+                </div>
+                <p class="technique-description">
+                    Ayuda a disminuir el ritmo cardíaco y liberar tensión del día. Ideal antes de dormir o cuando quieras bajar la mente y descansar mejor.
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/YRPh_GaiL8s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="tech2" class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon"><i class="bi bi-circle-half"></i></div>
+                    <div>
+                        <h3>Técnica 5-5</h3>
+                        <p class="technique-subtitle">Para regular el estrés y volver a tu centro</p>
+                    </div>
+                </div>
+                <p class="technique-description">
+                    Respiración equilibrada que estabiliza tu sistema nervioso y te ayuda a sentirte más presente. Perfecta en medio del día cuando todo va muy rápido.
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/tybOi4hjZFQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="tech3" class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon"><i class="bi bi-shield-check"></i></div>
+                    <div>
+                        <h3>Técnica 4-6</h3>
+                        <p class="technique-subtitle">Para antes de una situación que te da nervio o miedo</p>
+                    </div>
+                </div>
+                <p class="technique-description">
+                    Reduce la respuesta de alerta y trae calma al cuerpo. Te ayuda a sentirte más estable y seguro antes de presentaciones, conversaciones importantes o decisiones.
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/DbDoBzGY3vo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="tech4" class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon"><i class="bi bi-sunrise"></i></div>
+                    <div>
+                        <h3>Técnica 30-15</h3>
+                        <p class="technique-subtitle">Para elevar tu energía y activar tu ánimo</p>
+                    </div>
+                </div>
+                <p class="technique-description">
+                    Movimiento respiratorio más dinámico que despierta el cuerpo, trae claridad mental y aumenta la motivación. Ideal para mañanas, mediodías o cuando quieras recargar.
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/nzCaZQqAs9I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="tech5" class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon"><i class="bi bi-trophy"></i></div>
+                    <div>
+                        <h3>Técnica 10-20-30</h3>
+                        <p class="technique-subtitle">Para atravesar retos físicos o emocionales con fuerza</p>
+                    </div>
+                </div>
+                <p class="technique-description">
+                    Una respiración que fortalece el cuerpo y regula la mente. Útil cuando necesitas sostenerte, avanzar, o recuperar tu fortaleza interior.
+                </p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/aXItOY0sLRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>Conecta con Richie</h2>
+            <div class="contact-content">
+                <div class="contact-photo">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="contact-buttons">
+                    <a href="https://instagram.com" target="_blank" class="contact-btn">
+                        <i class="bi bi-instagram"></i> Ver Instagram
+                    </a>
+                    <a href="#" target="_blank" class="contact-btn">
+                        <i class="bi bi-globe"></i> Visitar Página
+                    </a>
+                    <a href="https://wa.me/" target="_blank" class="contact-btn whatsapp">
+                        <i class="bi bi-whatsapp"></i> Hablar con Richie
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToTechnique(id) {
+            const element = document.getElementById(id);
+            const offset = 100;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            // Update active button
+            document.querySelectorAll('.technique-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.technique-card, .benefit-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
