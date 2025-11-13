@@ -23,10 +23,6 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(99, 179, 237, 0.9), rgba(155, 89, 182, 0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><radialGradient id="grad1"><stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.3" /><stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:0" /></radialGradient></defs><circle cx="600" cy="300" r="200" fill="url(%23grad1)"><animate attributeName="r" values="150;250;150" dur="4s" repeatCount="indefinite"/></circle></svg>');
-            background-size: cover;
-            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -34,21 +30,33 @@
             overflow: hidden;
         }
 
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.2) 100%);
+            background: linear-gradient(135deg, rgba(27, 51, 73, 0.85) 0%, rgba(0, 88, 75, 0.75) 50%, rgba(197, 238, 95, 0.3) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             text-align: center;
             color: white;
-            z-index: 1;
+            z-index: 2;
             padding: 20px;
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
+            position: relative;
         }
 
         .hero h1 {
@@ -62,7 +70,7 @@
         .breathing-circle {
             width: 120px;
             height: 120px;
-            border: 3px solid rgba(255,255,255,0.6);
+            border: 3px solid rgba(197, 238, 95, 0.8);
             border-radius: 50%;
             margin: 0 auto 40px;
             animation: breathe 4s ease-in-out infinite;
@@ -98,13 +106,13 @@
             font-size: clamp(2rem, 4vw, 3rem);
             text-align: center;
             margin-bottom: 60px;
-            color: #2c3e50;
+            color: #1b3349;
             font-weight: 300;
         }
 
         /* Benefits Section */
         .benefits {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f3f1eb 0%, #ede7dd 100%);
         }
 
         .benefits-grid {
@@ -131,13 +139,13 @@
         .benefit-icon {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            color: #667eea;
+            color: #00584b;
         }
 
         .benefit-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #5f7c8a;
+            color: #1b3349;
         }
 
         .benefit-card p {
@@ -160,23 +168,24 @@
 
         .technique-btn {
             padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00584b 0%, #1b3349 100%);
             color: white;
             border: none;
             border-radius: 25px;
             cursor: pointer;
             font-size: 1rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 88, 75, 0.3);
         }
 
         .technique-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 88, 75, 0.4);
         }
 
         .technique-btn.active {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #d9ee5f 0%, #00584b 100%);
+            color: #1b3349;
         }
 
         .technique-card {
@@ -205,7 +214,7 @@
 
         .technique-icon {
             font-size: 3.5rem;
-            color: #667eea;
+            color: #00584b;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -219,7 +228,7 @@
 
         .technique-card h3 {
             font-size: 1.8rem;
-            color: #2c3e50;
+            color: #1b3349;
             margin: 0;
         }
 
@@ -256,7 +265,7 @@
 
         /* Contact Section */
         .contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1b3349 0%, #00584b 100%);
             color: white;
             text-align: center;
         }
@@ -276,13 +285,24 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
+            overflow: hidden;
             background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            color: #667eea;
+            color: #00584b;
+        }
+
+        .contact-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .contact-photo i {
+            font-size: 6rem;
         }
 
         .contact-buttons {
@@ -295,7 +315,7 @@
         .contact-btn {
             padding: 15px 40px;
             background: white;
-            color: #667eea;
+            color: #00584b;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
@@ -307,6 +327,7 @@
         .contact-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            color: #1b3349;
         }
 
         .contact-btn.whatsapp {
@@ -325,13 +346,37 @@
                 padding: 60px 20px;
             }
 
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .breathing-circle {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 30px;
+            }
+
             .technique-header {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 text-align: center;
+                gap: 15px;
+            }
+
+            .technique-icon {
+                justify-content: center;
             }
 
             .technique-card {
                 padding: 30px 20px;
+            }
+
+            .contact-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .contact-photo i {
+                font-size: 4rem;
             }
 
             .contact-buttons {
@@ -349,6 +394,7 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
+        <img src="assets/img/Hero.jpg" alt="Respiración" class="hero-background">
         <div class="hero-content">
             <div class="breathing-circle"></div>
             <h1>Si quieres cambiar tu destino,<br>cambia tu respiración</h1>
@@ -395,7 +441,7 @@
             <div id="tech1" class="technique-card">
                 <div class="technique-header">
                     <div class="technique-icon"><i class="bi bi-moon-stars"></i></div>
-                    <div>
+                    <div class="technique-info">
                         <h3>Técnica 4-7-8</h3>
                         <p class="technique-subtitle">Para dormir profundamente y relajar el cuerpo</p>
                     </div>
@@ -411,7 +457,7 @@
             <div id="tech2" class="technique-card">
                 <div class="technique-header">
                     <div class="technique-icon"><i class="bi bi-circle-half"></i></div>
-                    <div>
+                    <div class="technique-info">
                         <h3>Técnica 5-5</h3>
                         <p class="technique-subtitle">Para regular el estrés y volver a tu centro</p>
                     </div>
@@ -420,14 +466,14 @@
                     Respiración equilibrada que estabiliza tu sistema nervioso y te ayuda a sentirte más presente. Perfecta en medio del día cuando todo va muy rápido.
                 </p>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/zq07gbFLCAs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/tybOi4hjZFQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
             <div id="tech3" class="technique-card">
                 <div class="technique-header">
                     <div class="technique-icon"><i class="bi bi-shield-check"></i></div>
-                    <div>
+                    <div class="technique-info">
                         <h3>Técnica 4-6</h3>
                         <p class="technique-subtitle">Para antes de una situación que te da nervio o miedo</p>
                     </div>
@@ -443,7 +489,7 @@
             <div id="tech4" class="technique-card">
                 <div class="technique-header">
                     <div class="technique-icon"><i class="bi bi-sunrise"></i></div>
-                    <div>
+                    <div class="technique-info">
                         <h3>Técnica 30-15</h3>
                         <p class="technique-subtitle">Para elevar tu energía y activar tu ánimo</p>
                     </div>
@@ -459,7 +505,7 @@
             <div id="tech5" class="technique-card">
                 <div class="technique-header">
                     <div class="technique-icon"><i class="bi bi-trophy"></i></div>
-                    <div>
+                    <div class="technique-info">
                         <h3>Técnica 10-20-30</h3>
                         <p class="technique-subtitle">Para atravesar retos físicos o emocionales con fuerza</p>
                     </div>
@@ -480,7 +526,7 @@
             <h2>Conecta con Richie</h2>
             <div class="contact-content">
                 <div class="contact-photo">
-                    <i class="bi bi-person-circle"></i>
+                    <img src="assets/img/Perfil.jpg" alt="Richie">
                 </div>
                 <div class="contact-buttons">
                     <a href="https://www.instagram.com/elrichielove/" target="_blank" class="contact-btn">
